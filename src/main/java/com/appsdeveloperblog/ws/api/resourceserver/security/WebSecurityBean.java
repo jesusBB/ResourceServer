@@ -3,6 +3,8 @@ package com.appsdeveloperblog.ws.api.resourceserver.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
@@ -11,6 +13,7 @@ import org.springframework.security.web.access.expression.WebExpressionAuthoriza
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity(securedEnabled = true)
 public class WebSecurityBean  {
 /*    @Bean
     public JwtAuthenticationConverter customJwtAuthenticationConverter() {
@@ -39,8 +42,8 @@ public class WebSecurityBean  {
 
         http.authorizeHttpRequests().requestMatchers(HttpMethod.GET, "/users/**").
                 //access(new WebExpressionAuthorizationManager("hasAuthority('SCOPE_profile') and hasAuthority('SCOPE_status')")).
-        //hasRole("developer"). // When using hasRole() method we just need to specify the role required.
-        hasAuthority("ROLE_developer").// When using hasAuthority() method "ROLE_" needs to be added as Spring won't do it for us
+        hasRole("developer"). // When using hasRole() method we just need to specify the role required.
+        //hasAuthority("ROLE_developer").// When using hasAuthority() method "ROLE_" needs to be added as Spring won't do it for us
                 anyRequest().
                 authenticated().
                 and().oauth2ResourceServer()
