@@ -13,7 +13,7 @@ import org.springframework.security.web.access.expression.WebExpressionAuthoriza
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(securedEnabled = true)
+@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class WebSecurityBean  {
 /*    @Bean
     public JwtAuthenticationConverter customJwtAuthenticationConverter() {
